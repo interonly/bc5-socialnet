@@ -1,8 +1,11 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 from posts.views import *
 
 
+publication_router = routers.DefaultRouter()
+publication_router.register("viewset", PublicationViewSet)
+
 urlpatterns = [
-    path("list/", PostsList.as_view(), name="posts-list"),
-    path('info/<int:pk>/', PostInfo.as_view()),
+    path('v3/', include(publication_router.urls)),
 ]
