@@ -15,4 +15,16 @@ class Publication(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Like(models.Model):
+    post = models.ForeignKey(verbose_name="Публикация", to=Publication, on_delete=models.CASCADE)
+    user = models.ForeignKey(verbose_name="Пользователь", to=User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="Дата обновления", auto_now=True)
+
+class Dislike(models.Model):
+    post = models.ForeignKey(verbose_name="Публикация", to=Publication, on_delete=models.CASCADE)
+    user = models.ForeignKey(verbose_name="Пользователь", to=User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="Дата обновления", auto_now=True)
 
